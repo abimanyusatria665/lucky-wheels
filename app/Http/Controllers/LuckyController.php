@@ -21,6 +21,7 @@ class LuckyController extends Controller
     public function create()
     {
         $data = Lucky::all();
+
         return view('create_data', compact('data'));
     }
 
@@ -28,13 +29,15 @@ class LuckyController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   $request->validate([
-            'name' => 'required',
-            'prize' => 'required'
-    ]);
+    {
+        $request->validate([
+                'name' => 'required',
+                'prize' => 'required',
+        ]);
+
         Lucky::create([
             'name' => $request->name,
-            'prize' => $request->prize
+            'prize' => $request->prize,
         ]);
 
         return redirect('/create')->with('successCreate', 'Successfully Create Data');
@@ -45,7 +48,6 @@ class LuckyController extends Controller
      */
     public function show(Lucky $lucky)
     {
-        
     }
 
     /**
@@ -53,7 +55,6 @@ class LuckyController extends Controller
      */
     public function edit(Lucky $lucky)
     {
-        //
     }
 
     /**
@@ -61,7 +62,6 @@ class LuckyController extends Controller
      */
     public function update(Request $request, Lucky $lucky)
     {
-        //
     }
 
     /**
@@ -69,6 +69,12 @@ class LuckyController extends Controller
      */
     public function destroy(Lucky $lucky)
     {
-        //
+    }
+
+    public function getLuckyData()
+    {
+        $data = Lucky::all();
+
+        return $data;
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BetSlotsController;
 use App\Http\Controllers\LuckyController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +23,5 @@ Route::post('/register', [UserController::class, 'inputRegister'])->name('input.
 Route::post('/login', [UserController::class, 'auth'])->name('login.auth');
 Route::get('/', [UserController::class, 'index']);
 Route::get('/home', [LuckyController::class, 'index']);
+Route::post('/bet', [BetSlotsController::class, 'store']);
+Route::get('/get-lucky-data', [LuckyController::class, 'getLuckyData']);
